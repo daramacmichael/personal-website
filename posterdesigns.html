@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>designs</title>
+	<meta content="text/html; charset=utf-8" http-equiv="content-type">
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/freewall.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="banner">
+			<div class="col-md" >
+				<a class="link" href="./index.html">back</a>
+			</div>
+		</div>
+		<div id="freewall" class="free-wall"></div>
+		<script type="text/javascript">
+			var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-image: url(assets/photos/{index}.png)'></div>";
+			var w = 202, h = 281, html = '', limitItem = 21;
+			for (var i = 0; i < limitItem; ++i) {
+				html += temp.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{index}", i + 1);
+			}
+			$("#freewall").html(html);
+
+			var wall = new Freewall("#freewall");
+			wall.reset({
+				selector: '.cell',
+				animate: true,
+				cellW: 202,
+				cellH: 281,
+				onResize: function() {
+					wall.refresh();
+				}
+			});
+			wall.fitWidth();
+			$(window).trigger("resize");
+		</script>
+		<div class="row" id="back">
+			<div class="col-md-9">
+				<a class="link" href="./index.html">back</a>
+			</div>
+			<div class="col-md-3" >
+				<div id="rights">© 2017 dara macmichael -  no rights reserved.</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
